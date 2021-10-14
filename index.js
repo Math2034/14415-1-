@@ -5,7 +5,7 @@ var porta = server.porta;
 var mongoose=require('mongoose');
 
 var conexao = ()=> {
-    var caminho = mongoose.connect("mongodb+srv://awessome:29935@cluster0.tfqrg.mongodb.net/coisasawesome?retryWrites=true&w=majority")
+    var caminho = mongoose.connect("mongodb+srv://awesome:54321@cluster0.tfqrg.mongodb.net/coisasawesome?retryWrites=true&w=majority")
 }
 
 var schema = mongoose.Schema;
