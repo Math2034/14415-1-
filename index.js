@@ -1,4 +1,4 @@
-var server=require('./config/server');
+var server = require('./config/server');
 var app = server.app;
 var porta = server.porta;
 
@@ -34,7 +34,6 @@ res.render('index', {documentos});
  .catch((err)=>{
 console.log(err);
  });
- 
-});
-app.listen(porta);
 
+});
+app.listen(porta); 
