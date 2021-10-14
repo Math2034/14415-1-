@@ -1,17 +1,40 @@
-// servidor
-var express = require('express')
-var app = express()
+var server=require('./config/server');
+var app = server.app;
+var porta = server.porta;
 
-var porta = process.env.PORT || 3636
+var mongoose=require('mongoose');
 
-// config.
-app.set("view engine", "ejs")
-app.use(express.static('./'))
+var conexao = ()=> {
+    var caminho = mongoose.connect("mongodb+srv://awessome:29935@cluster0.tfqrg.mongodb.net/coisasawesome?retryWrites=true&w=majority")
+}
 
-// rota para abrir o arquivo index.ejs
-app.get('/',(req,res)=>{
-    res.render('index')
-})
+var schema = mongoose.Schema;
 
-// ligar servidor
-app.listen(porta)
+var depoimentos = new schema({
+nome:String,
+cargo:String,
+mensagem:String
+});
+
+var documentos = mongoose.model('depoimentos', depoimentos);
+
+//setar ejs como engine
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
+//setar rota index.ejs
+app.get('/',(req, res)=>{
+conexao();
+documentos.find().limit(3).sort({'_id': -1})
+
+ .then((documentos)=>{
+res.render('index', {documentos});
+ })
+
+ .catch((err)=>{
+console.log(err);
+ });
+ 
+});
+app.listen(porta);
+
