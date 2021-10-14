@@ -28,7 +28,7 @@ conexao();
 documentos.find().limit(3).sort({'_id': -1})
 
  .then((documentos)=>{
-res.render('/', {documentos});
+res.render('index', {documentos});
  })
 
  .catch((err)=>{
