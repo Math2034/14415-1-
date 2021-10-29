@@ -1,9 +1,9 @@
-var express = require('express')
+   
+var express = require('express') 
 var app = express()
 
-app.use(express.urlencoded({extended:true}))
-app.use(express.static('./'))
+app.use(express.urlencoded({extended:false}))
 
-var porta = process.env.PORT || 1134
+var porta = process.env.PORT || 4002
 
-module.exports = {app, porta}
+module.exports = {app,porta}
